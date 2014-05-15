@@ -19,7 +19,7 @@ class Configuration(object):
 
         if not os.path.isfile(self.java):
             raise IOError('No java VM installed \n'
-                          'Please installed it.')
+                          'Please install it.')
                 
 
 def main():
