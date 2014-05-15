@@ -5,19 +5,23 @@ import os
 
 
 class Configuration(object):
-    def __init__(self, java=None):
+    """
+    Java Wrapper command
+    """
+    def __init__(self, java_cmd=None):
         """
         """
-        self.java = java
+        self.java_cmd = java_cmd
+        self.jar_opt = '-jar'
 
-        if not self.java:
+        if not self.java_cmd:
             wcmd = 'which'
             if sys.platform == 'win32':
                 wcmd = 'where'
-            self.java = subprocess.Popen([wcmd, 'java'],
+            self.java_cmd = subprocess.Popen([wcmd, 'java'],
                                          stdout=subprocess.PIPE).communicate()[0].strip()
 
-        if not os.path.isfile(self.java):
+        if not os.path.isfile(self.java_cmd):
             raise IOError('No java VM installed \n'
                           'Please install it.')
                 
